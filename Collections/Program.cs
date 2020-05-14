@@ -6,6 +6,7 @@ namespace Collections {
     class Program {
         static void Main( string[] args ) {
             List<Team> teams = TeamRegister.GetTeams().ToList();
+            var randomTeams = new RandomCollection<Team>(TeamRegister.GetTeams().ToList());
 
             Display("Not sorted", teams);
 
@@ -20,6 +21,9 @@ namespace Collections {
             teams.Sort(new TeamComparer().CompareLeagues);
             teams.Reverse();
             Display("League sort", teams);
+
+            Display("Random teams", randomTeams);
+            Display("Random 15 teams", randomTeams.GetRandom(15));
         }
 
         static void Display<T>( string title, IEnumerable<T> items) {
